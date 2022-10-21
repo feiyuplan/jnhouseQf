@@ -5,7 +5,7 @@ namespace Feiyuplan\Jnhouse;
 /**
  * Class Factory.
  *
- * @method static \Feiyuplan\Jnhouse\Hourse\Application   hourse(array $config)
+ * @method static \Feiyuplan\Jnhouse\Hourse\Application   Hourse(array $config)
  */
 class Factory
 {
