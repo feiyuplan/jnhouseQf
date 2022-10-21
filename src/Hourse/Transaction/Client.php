@@ -7,9 +7,9 @@ use GuzzleHttp\Client as httpClient;
 use Feiyuplan\Jnhouse\Hourse\Auth\AccessToken;
 use Feiyuplan\Jnhouse\Kernel\BaseHourse;
 /**
- * Media Client
+ * Transaction Client
  *
- * @author moniang <me@imoniang.com>
+ * @author feiyu <315061897@qq.com>
  */
 class Client extends BaseHourse
 {

@@ -3,7 +3,7 @@
 /*
  * This file is part of the overtrue/wechat.
  *
- * (c) overtrue <i@overtrue.me>
+ * (c) feiyu <315061897@qq.com>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
@@ -17,9 +17,9 @@ use Feiyuplan\Jnhouse\Kernel\Exceptions\Exception;
 /**
  * Class ServiceContainer.
  *
- * @author overtrue <i@overtrue.me>
+ * @author feiyu <315061897@qq.com>
  *
- * @property \EasyWeChat\Kernel\Config                          $config
+ * @property \Feiyuplan\Jnhouse\Kernel\Config                          $config
  * @property \Symfony\Component\HttpFoundation\Request          $request
  * @property \GuzzleHttp\Client                                 $http_client
  * @property \Monolog\Logger                                    $logger
@@ -30,7 +30,8 @@ class ServiceContainer extends Container
 
     public $config=[];
     public $sign;
-    public $url="https://qfopenapi.qiaofangyun.com/api/jediopenplatformopenapi";
+    public $url="https://qfopenapi.qiaofangyun.com";
+    public $uri="/api/jediopenplatformopenapi";
     public $form_params=[];
     public $access_token;
     public function __construct($options)
@@ -53,8 +54,11 @@ class ServiceContainer extends Container
         }
         return sha1($this->config["Appid"]."|".$this->form_params["timeStamp"]."|".$this->config["AppSecret"]);
     }
-    public function getUrl($uri){
-        return $this->url.$uri;
+    public function getUrl($url,$uri=""){
+        if($uri){
+            return $this->url.$uri.$url;
+        }
+        return $this->url.$this->uri.$url;
     }
     public function setForm($form_params){
         $this->form_params=$form_params;

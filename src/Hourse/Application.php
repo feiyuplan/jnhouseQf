@@ -3,7 +3,7 @@
 /*
  * This file is part of the overtrue/wechat.
  *
- * (c) overtrue <i@overtrue.me>
+ * (c) feiyu <315061897@qq.com>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
@@ -41,6 +41,14 @@ class Application extends ServiceContainer
     public function UserCenter(): \Feiyuplan\Jnhouse\Hourse\UserCenter\Client
     {
         return new \Feiyuplan\Jnhouse\Hourse\UserCenter\Client($this);
+    }
+    public function Position(): \Feiyuplan\Jnhouse\Hourse\Position\Client
+    {
+        return new \Feiyuplan\Jnhouse\Hourse\Position\Client($this);
+    }
+    public function Commonhouse(): \Feiyuplan\Jnhouse\Hourse\Commonhouse\Client
+    {
+        return new \Feiyuplan\Jnhouse\Hourse\Commonhouse\Client($this);
     }
 
 }

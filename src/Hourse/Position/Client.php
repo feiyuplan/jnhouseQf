@@ -1,11 +1,11 @@
 <?php
 
-namespace Feiyuplan\Jnhouse\Hourse\Department;
+namespace Feiyuplan\Jnhouse\Hourse\Position;
 use Feiyuplan\Jnhouse\Kernel\BaseClient;
 use Feiyuplan\Jnhouse\Kernel\ServiceContainer;
 use Feiyuplan\Jnhouse\Kernel\BaseHourse;
 /**
- * Department Client
+ * Position Client
  *
  * @author feiyu <315061897@qq.com>
  */
@@ -19,80 +19,86 @@ class Client extends BaseHourse
     }
 
     /**
-     * 获取所有部门
+     * 职务列表查询
      * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getAllDepartment($params)
+    public function searchPositionByCondition($params)
     {
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
-        $response=$BaseClient->httpGet($this->app->getUrl("/organization/department/getAllDepartment"),[
+        $response=$BaseClient->httpPost($this->app->getUrl("/organization/position/searchPositionByCondition"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);
         return $response;
     }
     /**
-     * 部门详情查询
+     * 角色列表查询
      * @param $params
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function searchDepartment($params)
+    public function searchRole($params)
     {
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/department/searchDepartment"),[
+        $response=$BaseClient->httpPost($this->app->getUrl("/organization/position/searchRole"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);
         return $response;
     }
+
     /**
-     * 新增部门
+     * 新增职务
      * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function addDepartment($params)
+    public function addPosition($params)
     {
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/department/addDepartment"),[
+        $response=$BaseClient->httpPost($this->app->getUrl("/organization/position/addPosition"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);
         return $response;
     }
+
     /**
-     * 更新部门
+     * 更新职务
      * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function updateDepartment($params)
+    public function updatePosition($params)
     {
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/department/updateDepartment"),[
+        $response=$BaseClient->httpPost($this->app->getUrl("/organization/position/updatePosition"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);
         return $response;
     }
+
     /**
-     * 更新门店状态
+     * 删除职务
      * @param $params
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function updateStoreStatus($params)
+    public function removePositionByUuid($params)
     {
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/department/updateStoreStatus"),[
+        $response=$BaseClient->httpPost($this->app->getUrl("/organization/position/removePositionByUuid"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);

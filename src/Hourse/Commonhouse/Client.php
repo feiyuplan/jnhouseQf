@@ -1,11 +1,11 @@
 <?php
 
-namespace Feiyuplan\Jnhouse\Hourse\UserCenter;
+namespace Feiyuplan\Jnhouse\Hourse\Commonhouse;
 use Feiyuplan\Jnhouse\Kernel\BaseClient;
 use Feiyuplan\Jnhouse\Kernel\ServiceContainer;
 use Feiyuplan\Jnhouse\Kernel\BaseHourse;
 /**
- * UserCenter Client
+ * Commonhouse Client
  *
  * @author feiyu <315061897@qq.com>
  */
@@ -19,140 +19,7 @@ class Client extends BaseHourse
     }
 
     /**
-     * 员工列表查询
-     * @param $params
-     * @return array|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function searchUserList($params)
-    {
-        $this->app->form_params=$params;
-        $this->app->form_params["timeStamp"]=time()*1000;
-        $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/usercenter/searchUserList"),[
-            'headers'=>$this->getHearder(),
-            'query' =>$this->app->form_params
-        ]);
-        return $response;
-    }
-    /**
-     * 新增员工
-     * @param $params
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function addUser($params)
-    {
-        $this->app->form_params=$params;
-        $this->app->form_params["timeStamp"]=time()*1000;
-        $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/usercenter/addUser"),[
-            'headers'=>$this->getHearder(),
-            'query' =>$this->app->form_params
-        ]);
-        return $response;
-    }
-
-    /**
-     * 更新员工
-     * @param $params
-     * @return array|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function updateUser($params)
-    {
-        $this->app->form_params=$params;
-        $this->app->form_params["timeStamp"]=time()*1000;
-        $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/usercenter/updateUser"),[
-            'headers'=>$this->getHearder(),
-            'query' =>$this->app->form_params
-        ]);
-        return $response;
-    }
-
-    /**
-     * 更新员工部门和职务
-     * @param $params
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function updateUserDeptAndPosition($params)
-    {
-        $this->app->form_params=$params;
-        $this->app->form_params["timeStamp"]=time()*1000;
-        $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/usercenter/updateUserDeptAndPosition"),[
-            'headers'=>$this->getHearder(),
-            'query' =>$this->app->form_params
-        ]);
-        return $response;
-    }
-
-    /**
-     * 员工离职
-     * @param $params
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function userDimission($params)
-    {
-        $this->app->form_params=$params;
-        $this->app->form_params["timeStamp"]=time()*1000;
-        $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/usercenter/userDimission"),[
-            'headers'=>$this->getHearder(),
-            'query' =>$this->app->form_params
-        ]);
-        return $response;
-    }
-    /**
-     * 员工复职
-     * @param $params
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function userResume($params)
-    {
-        $this->app->form_params=$params;
-        $this->app->form_params["timeStamp"]=time()*1000;
-        $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/usercenter/userResume"),[
-            'headers'=>$this->getHearder(),
-            'query' =>$this->app->form_params
-        ]);
-        return $response;
-    }
-    /**
-     * 更新员工手机号
-     * @param $params
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function updateUserPhone($params)
-    {
-        $this->app->form_params=$params;
-        $this->app->form_params["timeStamp"]=time()*1000;
-        $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/usercenter/updateUserPhone"),[
-            'headers'=>$this->getHearder(),
-            'query' =>$this->app->form_params
-        ]);
-        return $response;
-    }
-    /**
-     * 批量冻结/解冻员工
-     * @param $params
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function batchSetUserFreeStatus($params)
-    {
-        $this->app->form_params=$params;
-        $this->app->form_params["timeStamp"]=time()*1000;
-        $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/usercenter/batchSetUserFreeStatus"),[
-            'headers'=>$this->getHearder(),
-            'query' =>$this->app->form_params
-        ]);
-        return $response;
-    }
-    /**
-     * 批量查询员工信息（不包含删除的)
+     * 根据uuids查询员工信息（不包含删除的)
      * @param $params
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -161,7 +28,127 @@ class Client extends BaseHourse
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/organization/usercenter/listValidEmployeeByUuids"),[
+        $response=$BaseClient->httpPost($this->app->getUrl("/employee/listValidEmployeeByUuids","/api/marketingopenapi"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 根据uuids查询公共营销库房源
+     * @param $params
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listPropertyByUuids($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/commonhouse/listPropertyByUuids","/api/marketingopenapi"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+    /**
+     * 通过uuids集合list获取房源信息(不包含删除的)
+     * @param $params
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listValidPropertyBaseByUuids($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/commonhouse/listValidPropertyBaseByUuids","/api/marketingopenapi"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+    /**
+     * 通过uuids集合list获取房源视频信息(不包含删除的)
+     * @param $params
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listValidPropertyVideoByUuids($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/commonhouse/listValidPropertyVideoByUuids","/api/marketingopenapi"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 通过uuids集合list获取全景房VR信息(不包含删除的)
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listValidPropertyVrInfoByUuids($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/commonhouse/listValidPropertyVrInfoByUuids","/api/marketingopenapi"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+    /**
+     * 根据uuids查询房源角色人信息（不包含删除的)
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listValidPropertyRoleByUuids($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/realhouse/listValidPropertyRoleByUuids","/api/marketingopenapi"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 通过uuids集合list获取房源图片信息(不包含删除的)
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listValidPropertyPhotoByUuids($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/commonhouse/listValidPropertyPhotoByUuids","/api/marketingopenapi"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 分页拉取资源UuidList
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function pullResourceUuidList($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/company/pullResourceUuidList","/api/marketingopenapi"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);

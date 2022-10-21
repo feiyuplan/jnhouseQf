@@ -3,7 +3,7 @@
 /*
  * This file is part of the overtrue/wechat.
  *
- * (c) overtrue <i@overtrue.me>
+ * (c) feiyu <315061897@qq.com>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
@@ -16,7 +16,7 @@ use ArrayAccess;
 /**
  * Interface Arrayable.
  *
- * @author overtrue <i@overtrue.me>
+ * @author feiyu <315061897@qq.com>
  */
 interface Arrayable extends ArrayAccess
 {

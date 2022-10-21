@@ -3,7 +3,7 @@
 /*
  * This file is part of the overtrue/wechat.
  *
- * (c) overtrue <i@overtrue.me>
+ * (c) feiyu <315061897@qq.com>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
@@ -13,31 +13,27 @@ namespace Feiyuplan\Jnhouse\Kernel;
 
 
 use GuzzleHttp\MessageFormatter;
-use GuzzleHttp\Middleware;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Log\LogLevel;
 use GuzzleHttp\Client;
 
 /**
  * Class BaseClient.
  *
- * @author overtrue <i@overtrue.me>
+ * @author feiyu <315061897@qq.com>
  */
 class BaseClient
 {
 
 
     /**
-     * @var \EasyWeChat\Kernel\ServiceContainer
+     * @var \Feiyuplan\Jnhouse\Kernel\ServiceContainer
      */
     protected $Client;
 
     /**
      * BaseClient constructor.
      *
-     * @param \EasyWeChat\Kernel\ServiceContainer                    $app
-     * @param \EasyWeChat\Kernel\Contracts\AccessTokenInterface|null $accessToken
+     * @param \Feiyuplan\Jnhouse\Kernel\ServiceContainer                    $app
+     * @param \Feiyuplan\Jnhouse\Kernel\Contracts\AccessTokenInterface|null $accessToken
      */
     public function __construct()
     {
@@ -51,9 +47,9 @@ class BaseClient
      * @param string $url
      * @param array  $query
      *
-     * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
+     * @return \Psr\Http\Message\ResponseInterface|\Feiyuplan\Jnhouse\Kernel\Support\Collection|array|object|string
      *
-     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \Feiyuplan\Jnhouse\Kernel\Exceptions\Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function httpGet(string $url, array $query = [])
@@ -74,14 +70,12 @@ class BaseClient
      * @param string $url
      * @param array  $data
      *
-     * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
+     * @return \Psr\Http\Message\ResponseInterface|\Feiyuplan\Jnhouse\Kernel\Support\Collection|array|object|string
      *
-     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function httpPost(string $url, array $query = [])
     {
-
         $response=(new Client())->request('post',$url, [
             'json' =>$query["query"],
             'headers'=>$query["headers"]

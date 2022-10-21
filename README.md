@@ -1,8 +1,8 @@
+# Jnhouse
+```php
 <?php
 
 use Feiyuplan\Jnhouse\Factory;
-
-require "../vendor/autoload.php";
 $options = [
     'Appid' => '',
     'AppSecret' => '',
@@ -26,3 +26,4 @@ $app = Factory::Hourse($options);
 //$getToken=$app->AccessToken()->getToken();
 print_r($app->Transaction()->searchUserList($param));
 exit;
+```
