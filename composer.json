@@ -25,7 +25,9 @@
         "symfony/event-dispatcher": "^4.3 || ^5.0 || ^6.0",
         "symfony/http-foundation": "^2.7 || ^3.0 || ^4.0 || ^5.0 || ^6.0",
         "symfony/psr-http-message-bridge": "^0.3 || ^1.0 || ^2.0",
-        "ext-libxml": "*"
+        "ext-libxml": "*",
+        "predis/predis": "2.0.x-dev",
+        "millionmile/get_env": "dev-master"
     },
      "minimum-stability": "dev",
      "license": "MIT"

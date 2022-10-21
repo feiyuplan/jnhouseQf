@@ -5,7 +5,12 @@ namespace Feiyuplan\Jnhouse;
 /**
  * Class Factory.
  *
+ * @method static \Feiyuplan\Jnhouse\Transaction\Application   Transaction(array $config)
  * @method static \Feiyuplan\Jnhouse\Hourse\Application   Hourse(array $config)
+ * @method static \Feiyuplan\Jnhouse\AccessToken\Application   AccessToken(array $config)
+ * @method static \Feiyuplan\Jnhouse\UserCenter\Application   UserCenter(array $config)
+ * @method static \Feiyuplan\Jnhouse\Position\Application   Position(array $config)
+ * @method static \Feiyuplan\Jnhouse\Commonhouse\Application   Commonhouse(array $config)
  */
 class Factory
 {
