@@ -1,7 +1,7 @@
-# Jnhouse
+# 58巧房2.0开放平台Jnhouse
+
 ```php
 <?php
-
 use Feiyuplan\Jnhouse\Factory;
 $options = [
     'Appid' => '',
