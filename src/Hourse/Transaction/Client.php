@@ -19,15 +19,94 @@ class Client extends BaseHourse
         $this->app = $app;
         $this->app->access_token=$this->app->AccessToken()->getToken();
     }
-    public function searchUserList($params)
+
+    /**
+     * 查询业绩分成列表
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getAchievementDistributionList($params)
     {
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
-        $response=$BaseClient->httpGet($this->app->getUrl("/organization/department/getAllDepartment"),[
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/achievement/getAchievementDistributionList"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);
-        print_r($response);exit;
+        return $response;
+    }
+
+    /**
+     * 搜索交易列表
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function searchTransaction($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/searchTransaction"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 根据交易uuid查询交易信息
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getTransactionByTransactionUuid($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/getTransactionByTransactionUuid"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 查询交易分成接口列表
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function searchShareTransaction($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/searchShareTransaction"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 搜索交易阶段
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function searchPhase($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/searchPhase"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
     }
 }

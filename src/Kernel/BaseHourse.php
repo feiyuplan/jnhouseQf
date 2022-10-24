@@ -12,6 +12,7 @@ namespace Feiyuplan\Jnhouse\Kernel;
 
 class BaseHourse
 {
+
     public $app;
     public $header;
     public function getHearder(){
