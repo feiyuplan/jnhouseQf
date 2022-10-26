@@ -54,5 +54,9 @@ class Application extends ServiceContainer
     {
         return new \Feiyuplan\Jnhouse\Hourse\Department\Client($this);
     }
+    public function Capital(): \Feiyuplan\Jnhouse\Hourse\Capital\Client
+    {
+        return new \Feiyuplan\Jnhouse\Hourse\Capital\Client($this);
+    }
 
 }
