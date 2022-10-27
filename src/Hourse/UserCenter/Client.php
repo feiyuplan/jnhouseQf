@@ -167,4 +167,20 @@ class Client extends BaseHourse
         ]);
         return $response;
     }
+    /**
+     * 批量获取员工身份证号
+     * @param $params
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function batchGetUserIdCard($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/organization/usercenter/batchGetUserIdCard"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
 }
