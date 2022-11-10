@@ -21,6 +21,96 @@ class Client extends BaseHourse
     }
 
     /**
+     * 新增认购
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function addSubscription($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/addSubscription"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 编辑认购
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function editSubscription($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/editSubscription"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 新增签约
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function addSigning($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/addSigning"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 编辑签约
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function editSigning($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/editSigning"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 解约
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function cancelTransaction($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/cancelTransaction"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
      * 查询业绩分成列表
      * @param $params
      * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
@@ -104,6 +194,42 @@ class Client extends BaseHourse
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
         $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/searchPhase"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 修改核实信息 新加接口
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function updateCheckInfo($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/updateCheckInfo"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 修改成销信息 新加接口
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function updateSalesInfo($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/subscription/updateSalesInfo"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);

@@ -62,5 +62,9 @@ class Application extends ServiceContainer
     {
         return new \Feiyuplan\Jnhouse\Hourse\Report\Client($this);
     }
+    public function PropertyParameters(): \Feiyuplan\Jnhouse\Hourse\PropertyParameters\Client
+    {
+        return new \Feiyuplan\Jnhouse\Hourse\PropertyParameters\Client($this);
+    }
 
 }
