@@ -29,7 +29,7 @@ class Client extends BaseHourse
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/propertyParameters/listSystemConfigByConfigNames"),[
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/propertyParameters/listSystemConfigByConfigNames"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);
@@ -47,7 +47,7 @@ class Client extends BaseHourse
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/propertyParameters/listReceiptCategorySetting"),[
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/propertyParameters/listReceiptCategorySetting"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);
@@ -65,7 +65,7 @@ class Client extends BaseHourse
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/propertyParameters/listPaymentCategorySetting"),[
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/propertyParameters/listPaymentCategorySetting"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);
@@ -83,7 +83,7 @@ class Client extends BaseHourse
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $BaseClient=new BaseClient();
-        $response=$BaseClient->httpPost($this->app->getUrl("/propertyParameters/getReceiptStandardSettingList"),[
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/propertyParameters/getReceiptStandardSettingList"),[
             'headers'=>$this->getHearder(),
             'query' =>$this->app->form_params
         ]);
