@@ -129,6 +129,24 @@ class Client extends BaseHourse
     }
 
     /**
+     * 查询业绩分成明细列表
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getAchievementDetailList($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/transaction/achievement/detailList"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
      * 搜索交易列表
      * @param $params
      * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
