@@ -15,20 +15,21 @@ class AccessToken
     }
 
     /**
-     * token
+     * token缓存在redis
      * @param array $params
      * @return mixed
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getToken(array $params=[]){
+        $time=time();
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
         $RedisCache=new RedisCache();
         if($RedisCache->get("Qf_AccessToken")){
             $str_token=$RedisCache->get("Qf_AccessToken");
             $token=json_decode($str_token);
-            if(isset($token->time)&&(time()-$token->time<(7200-60))){
+            if(isset($token->time)&&((time()-$token->time)<(7200-5*60))){
                 return $token->accessToken;//直接返回
             }
             $header  = [
@@ -39,7 +40,6 @@ class AccessToken
                 'User-Agent'=>'curl',
                 'companyUuid'=>$this->app['companyUuid'],
             ];
-            $time=time();
             $BaseClient=new BaseClient();
             $response=$BaseClient->httpGet($this->app->getUrl("/token/refreshToken"),[
                 'headers'=>$header,
@@ -55,7 +55,6 @@ class AccessToken
                 'User-Agent'=>'curl',
                 'companyUuid'=>$this->app['companyUuid'],
             ];
-            $time=time();
             $BaseClient=new BaseClient();
             $response=$BaseClient->httpGet($this->app->getUrl("/token/getToken"),[
                 'headers'=>$header,
@@ -65,12 +64,20 @@ class AccessToken
         }
         if($response->responseCode==1){
             $accessToken=$response->data->accessToken;
-            $RedisCache->setex("Qf_AccessToken",json_encode(["accessToken"=>$accessToken,"time"=>$time]),7200);
+            $RedisCache->setex("Qf_AccessToken",json_encode(["accessToken"=>$accessToken,"time"=>$time]),7200-60);
             return $accessToken;
         }else{
             throw new Exception(json_encode($response));
         }
     }
+
+    /**
+     * token文件读取
+     * @param array $params
+     * @return mixed
+     * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function getTokenfile(array $params=[]){
         $this->app->form_params=$params;
         $this->app->form_params["timeStamp"]=time()*1000;
@@ -122,6 +129,13 @@ class AccessToken
             throw new Exception(json_encode($response));
         }
     }
+
+    /**
+     * 刷新token
+     * @return mixed
+     * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function refreshToken(){
         $this->app->form_params["timeStamp"]=time()*1000;
         $RedisCache=new RedisCache();

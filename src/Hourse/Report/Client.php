@@ -16,8 +16,7 @@ class Client extends BaseHourse
 
     public function __construct(ServiceContainer $app)
     {
-        $this->app = $app;
-        $this->app->access_token=$this->app->AccessToken()->getToken();
+        parent::__construct($app);
     }
 
     /**

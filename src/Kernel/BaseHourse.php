@@ -15,6 +15,17 @@ class BaseHourse
 
     public $app;
     public $header;
+    public function __construct(ServiceContainer $app)
+    {
+        $this->app = $app;
+        $this->app->access_token=$this->app->AccessToken()->getToken();
+    }
+
+    /**
+     * 配置header
+     * @return array
+     * @throws Exceptions\Exception
+     */
     public function getHearder(){
         return $this->header  = [
             'appId'=>$this->app->config["Appid"]??"",
