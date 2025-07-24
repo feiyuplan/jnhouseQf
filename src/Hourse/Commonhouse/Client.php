@@ -153,4 +153,61 @@ class Client extends BaseHourse
         ]);
         return $response;
     }
+
+    /**
+     * 查询房源全部角色人
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \Feiyuplan\Jnhouse\Kernel\Exceptions\Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function searchPropertyStakeholder($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/commonhouse/searchPropertyStakeholder","/api/jediopenplatformopenapi/property"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 查询房源带看记录
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \Feiyuplan\Jnhouse\Kernel\Exceptions\Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function listValidPropertyInspectionByUuids($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/realhouse/listValidPropertyInspectionByUuids","/api/marketingopenapi"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
+
+    /**
+     * 查询房源标签
+     * @param $params
+     * @return array|\Feiyuplan\Jnhouse\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \Feiyuplan\Jnhouse\Kernel\Exceptions\Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function searchPropertyTag($params)
+    {
+        $this->app->form_params=$params;
+        $this->app->form_params["timeStamp"]=time()*1000;
+        $BaseClient=new BaseClient();
+        $response=$BaseClient->httpPost($this->app->getUrl("/property/commonhouse/searchPropertyTag","/api/jediopenplatformopenapi"),[
+            'headers'=>$this->getHearder(),
+            'query' =>$this->app->form_params
+        ]);
+        return $response;
+    }
 }

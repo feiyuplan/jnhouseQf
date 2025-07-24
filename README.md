@@ -50,3 +50,10 @@ $app = Factory::Hourse($options);
 print_r($app->Transaction()->searchUserList($param));
 exit;
 ```
+##发布到github
+```
+git tag "v2.0.1"
+```
+```
+git push origin --tags
+```

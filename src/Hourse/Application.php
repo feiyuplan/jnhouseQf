@@ -66,5 +66,13 @@ class Application extends ServiceContainer
     {
         return new \Feiyuplan\Jnhouse\Hourse\PropertyParameters\Client($this);
     }
+    public function Customer(): \Feiyuplan\Jnhouse\Hourse\Customer\Client
+    {
+        return new \Feiyuplan\Jnhouse\Hourse\Customer\Client($this);
+    }
+    public function Employee(): \Feiyuplan\Jnhouse\Hourse\Employee\Client
+    {
+        return new \Feiyuplan\Jnhouse\Hourse\Employee\Client($this);
+    }
 
 }
