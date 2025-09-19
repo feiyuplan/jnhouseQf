@@ -74,6 +74,7 @@ class BaseClient
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
+
     public function httpPost(string $url, array $query = [])
     {
         $response=(new Client())->request('post',$url, [
