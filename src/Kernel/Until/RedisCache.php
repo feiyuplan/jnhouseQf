@@ -13,13 +13,6 @@ class RedisCache
                 'port'   => env("REDIS_PORT_QIAO"),
                 'password'   => env("REDIS_PASSWORD_QIAO")
             ]);
-        }else if(function_exists("env")&&env("REDIS_HOST")){
-            $this->client = new Client([
-                'scheme' => 'tcp',
-                'host'   => env("REDIS_HOST"),
-                'port'   => env("REDIS_PORT"),
-                'password'   => env("REDIS_PASSWORD")
-            ]);
         }else{
             EnvCache::init();
             $this->client = new Client([
